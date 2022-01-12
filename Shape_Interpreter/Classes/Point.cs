@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Shape_Interpreter.Classes
 {
-    class Point
+    public class Point
     {
         private double x;
         private double y;

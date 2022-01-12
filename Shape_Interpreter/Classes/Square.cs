@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Shape_Interpreter.Classes
 {
-    class Square : Shape
+    public class Square : Shape
     {
         private Point center;
         private double orientation;

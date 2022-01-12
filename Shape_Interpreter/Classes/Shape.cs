@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Shape_Interpreter.Classes
 {
-    interface Shape
+    public interface Shape
     {
         public abstract double calculateArea();
 
