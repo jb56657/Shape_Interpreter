@@ -11,5 +11,7 @@ namespace Shape_Interpreter.Classes
         public abstract double calculatePerimeter();
 
         public abstract Point calculateCentroid();
+
+        public abstract int getID();
     }
 }

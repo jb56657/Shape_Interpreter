@@ -12,7 +12,7 @@ namespace Shape_Interpreter_Test
         [TestMethod]
         public void SquareTest()
         {
-            Shape square = new Square(new Point(3.2, 4.5), 3.14, 6.2);
+            Shape square = new Square(1, new Point(3.2, 4.5), 3.14, 6.2);
 
             Assert.AreEqual(38.44, square.calculateArea(), delta);
             Assert.AreEqual(24.8, square.calculatePerimeter(), delta);
