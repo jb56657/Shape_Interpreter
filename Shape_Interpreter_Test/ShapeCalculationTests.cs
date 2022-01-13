@@ -1,13 +1,14 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shape_Interpreter;
 using Shape_Interpreter.Classes;
+using System;
 
 namespace Shape_Interpreter_Test
 {
     [TestClass]
     public class ShapeCalculationTests
     {
-        private readonly double delta = 0.0000000001;
+        private readonly double delta = 0.00001;
 
         [TestMethod]
         public void SquareTest()
@@ -16,7 +17,7 @@ namespace Shape_Interpreter_Test
 
             Assert.AreEqual(38.44, square.calculateArea(), delta);
             Assert.AreEqual(24.8, square.calculatePerimeter(), delta);
-            Assert.AreEqual(new Point(3.2, 4.5), square.calculateCentroid());
+            Assert.IsTrue(square.calculateCentroid().approximatelyEqualTo(new Point(3.2, 4.5), delta));
         }
 
         [TestMethod]
@@ -26,12 +27,31 @@ namespace Shape_Interpreter_Test
 
             Assert.AreEqual(15.588457268119, triangle.calculateArea(), delta);
             Assert.AreEqual(18, triangle.calculatePerimeter(), delta);
-            Assert.AreEqual(new Point(8.5, 9.9), triangle.calculateCentroid());
+            Assert.IsTrue(triangle.calculateCentroid().approximatelyEqualTo(new Point(8.5, 9.9), delta));
+        }
+
+        public void PolygonTest()
+        {
+            Point[] pointList = new Point[]
+            {
+                new Point(-1, 0),
+                new Point(-1.2, 1),
+                new Point(0, 2),
+                new Point(1.2, 1),
+                new Point(1, 0)
+            };
+            Shape polygon = new Polygon(6, pointList);
+
+            Assert.AreEqual(3.4, polygon.calculateArea(), delta);
+            Assert.AreEqual(7.16371, polygon.calculatePerimeter(), delta);
+            Assert.IsTrue(polygon.calculateCentroid().approximatelyEqualTo(new Point(0, 0.8), delta));
         }
 
         [TestMethod]
-        public void PolygonTest()
+        public void PolygonTest2()
         {
+            //Test polygon calculations against a square for an easier-to-check test
+
             Point[] pointList = new Point[]
             {
                 new Point(2.9, 5.1),
@@ -43,7 +63,7 @@ namespace Shape_Interpreter_Test
 
             Assert.AreEqual(59.16, polygon.calculateArea(), delta);
             Assert.AreEqual(32, polygon.calculatePerimeter(), delta);
-            Assert.AreEqual(new Point(0, 0), polygon.calculateCentroid());
+            Assert.IsTrue(polygon.calculateCentroid().approximatelyEqualTo(new Point(0, 0), delta));
         }
 
         [TestMethod]
@@ -53,7 +73,7 @@ namespace Shape_Interpreter_Test
 
             Assert.AreEqual(3.801327110843, circle.calculateArea(), delta);
             Assert.AreEqual(6.911503837897, circle.calculatePerimeter(), delta);
-            Assert.AreEqual(new Point(15, 7.4), circle.calculateCentroid());
+            Assert.IsTrue(circle.calculateCentroid().approximatelyEqualTo(new Point(15, 7.4), delta));
         }
 
         public void EllipsesTest()
@@ -62,7 +82,17 @@ namespace Shape_Interpreter_Test
 
             Assert.AreEqual(5.843362335677, ellipses.calculateArea(), delta);
             Assert.AreEqual(41.328364812784, ellipses.calculatePerimeter(), delta); //Wolfram alpha said 37.2407, but two other sources said 41.3
-            Assert.AreEqual(new Point(0.054, -1.006), ellipses.calculateCentroid());
+            Assert.IsTrue(ellipses.calculateCentroid().approximatelyEqualTo(new Point(0.054, -1.006), delta));
+        }
+
+        public void EllipsesTest2()
+        {
+            // Since calculating the perimeter of an ellipses is hard, check the result against an easier-to-calculate circle
+            Shape ellipses2 = new Ellipses(3, new Point(0, 0), 0, 1, 1);
+
+            Assert.AreEqual(Math.PI, ellipses2.calculateArea(), delta);
+            Assert.AreEqual(Math.PI * 2, ellipses2.calculatePerimeter(), delta);
+            Assert.IsTrue(ellipses2.calculateCentroid().approximatelyEqualTo(new Point(0, 0), delta));
         }
     }
 }
