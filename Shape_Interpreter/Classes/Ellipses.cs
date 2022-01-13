@@ -9,16 +9,24 @@ namespace Shape_Interpreter.Classes
         private int id;
         private Point center;
         private double orientation; //Orientation of the larger axis in radians
-        private double radius1; //length of the larger half-axis
-        private double radius2; //length of the smaller half-axis
+        private double majorRadius; //length of the larger half-axis
+        private double minorRadius; //length of the smaller half-axis
 
         public Ellipses(int id, Point center, double orientation, double radius1, double radius2)
         {
             this.id = id;
             this.center = center;
             this.orientation = orientation;
-            this.radius1 = radius1;
-            this.radius2 = radius2;
+            if(Math.Abs(radius1) >= Math.Abs(radius2))
+            {
+                this.majorRadius = radius1;
+                this.minorRadius = radius2;
+            }
+            else //The second radius was actually the larger of the two radii
+            {
+                this.majorRadius = radius2;
+                this.minorRadius = radius1;
+            }
         }
 
         public double calculateArea()
