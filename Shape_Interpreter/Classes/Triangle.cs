@@ -38,5 +38,25 @@ namespace Shape_Interpreter.Classes
         {
             return id;
         }
+
+        public override bool Equals(object obj)
+        {
+            if (!typeof(Triangle).Equals(obj.GetType()))
+            {
+                return false;
+            }
+            Triangle t = (Triangle)obj;
+
+            return
+                (this.id == t.id) &&
+                (this.center.Equals(t.center)) &&
+                (this.orientation == t.orientation) &&
+                (this.sideLength == t.sideLength);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }

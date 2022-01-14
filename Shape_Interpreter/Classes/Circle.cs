@@ -36,5 +36,24 @@ namespace Shape_Interpreter.Classes
         {
             return id;
         }
+
+        public override bool Equals(object obj)
+        {
+            if (!typeof(Circle).Equals(obj.GetType()))
+            {
+                return false;
+            }
+            Circle c = (Circle)obj;
+
+            return
+                (this.id == c.id) &&
+                (this.center.Equals(c.center)) &&
+                (this.radius == c.radius);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }

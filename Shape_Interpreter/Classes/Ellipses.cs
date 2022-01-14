@@ -48,5 +48,26 @@ namespace Shape_Interpreter.Classes
         {
             return id;
         }
+
+        public override bool Equals(object obj)
+        {
+            if (!typeof(Ellipses).Equals(obj.GetType()))
+            {
+                return false;
+            }
+            Ellipses e = (Ellipses)obj;
+
+            return
+                (this.id == e.id) &&
+                (this.center.Equals(e.center)) &&
+                (this.orientation == e.orientation) &&
+                (this.majorRadius == e.majorRadius) &&
+                (this.minorRadius == e.minorRadius);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }

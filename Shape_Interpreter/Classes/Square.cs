@@ -50,5 +50,25 @@ namespace Shape_Interpreter.Classes
         {
             return id;
         }
+
+        public override bool Equals(object obj)
+        {
+            if (!typeof(Square).Equals(obj.GetType()))
+            {
+                return false;
+            }
+            Square s = (Square)obj;
+
+            return
+                (this.id == s.id) &&
+                (this.center.Equals(s.center)) &&
+                (this.orientation == s.orientation) &&
+                (this.sideLength == s.sideLength);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }

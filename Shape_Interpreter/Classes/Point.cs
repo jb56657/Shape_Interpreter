@@ -60,5 +60,10 @@ namespace Shape_Interpreter.Classes
             if (this.x == p.x && this.y == p.y) { return true; }
             else { return false; };
         }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }

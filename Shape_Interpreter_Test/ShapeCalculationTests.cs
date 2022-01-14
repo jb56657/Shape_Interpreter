@@ -2,6 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shape_Interpreter;
 using Shape_Interpreter.Classes;
 using System;
+using System.IO;
 
 namespace Shape_Interpreter_Test
 {
@@ -30,6 +31,7 @@ namespace Shape_Interpreter_Test
             Assert.IsTrue(triangle.calculateCentroid().approximatelyEqualTo(new Point(8.5, 9.9), delta));
         }
 
+        [TestMethod]
         public void PolygonTest()
         {
             Point[] pointList = new Point[]
@@ -76,6 +78,7 @@ namespace Shape_Interpreter_Test
             Assert.IsTrue(circle.calculateCentroid().approximatelyEqualTo(new Point(15, 7.4), delta));
         }
 
+        [TestMethod]
         public void EllipsesTest()
         {
             Shape ellipses = new Ellipses(1, new Point(0.054, -1.006), -0.314, 9.3, 0.2);
@@ -85,6 +88,7 @@ namespace Shape_Interpreter_Test
             Assert.IsTrue(ellipses.calculateCentroid().approximatelyEqualTo(new Point(0.054, -1.006), delta));
         }
 
+        [TestMethod]
         public void EllipsesTest2()
         {
             // Since calculating the perimeter of an ellipses is hard, check the result against an easier-to-calculate circle

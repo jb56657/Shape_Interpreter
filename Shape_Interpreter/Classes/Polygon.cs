@@ -34,5 +34,23 @@ namespace Shape_Interpreter.Classes
         {
             return id;
         }
+
+        public override bool Equals(object obj)
+        {
+            if (!typeof(Polygon).Equals(obj.GetType()))
+            {
+                return false;
+            }
+            Polygon p = (Polygon)obj;
+
+            return
+                (this.id == p.id) &&
+                (this.vertices.Equals(p.vertices));
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }
