@@ -28,7 +28,19 @@ namespace Shape_Interpreter.Classes
 
         public static Circle assembleCircle(string[] CSVdata)
         {
-            throw new NotImplementedException();
+            // If there aren't 8 pieces of data for constructing the circle, then the format is incorrect.
+            if (CSVdata.Length != 8)
+            {
+                return null;
+            }
+            
+            // Convert each piece of data to the appropriate data type
+            int id; Point center; double radius;
+            id = Convert.ToInt32(CSVdata[0]);
+            center = new Point(Convert.ToDouble(CSVdata[3]), Convert.ToDouble(CSVdata[5]));
+            radius = Convert.ToDouble(CSVdata[7]);
+
+            return new Circle(id, center, radius);
         }
     }
 }

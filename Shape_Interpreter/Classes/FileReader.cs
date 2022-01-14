@@ -5,14 +5,14 @@ using System.IO;
 
 namespace Shape_Interpreter.Classes
 {
-    public class FileReader
+    public static class FileReader
     {
         /// <summary>
         /// Read in shapes from a CSV file. This function assumes that the file is located in the Resources folder.
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
-        public Shape[] readFromCSVFile(string fileName)
+        public static Shape[] readFromCSVFile(string fileName)
         {
             string filePath = getResourcesFolder() + fileName;
             
@@ -35,7 +35,7 @@ namespace Shape_Interpreter.Classes
         /// If unspecified, refer to the shape CSV file
         /// </summary>
         /// <returns></returns>
-        public Shape[] readFromCSVFile()
+        public static Shape[] readFromCSVFile()
         {
             string path = Path.Combine(getResourcesFolder(), @"Resources\Machine Vision Development Engineer Coding Exercise_ShapeList2.csv");
             return readFromCSVFile("");
@@ -47,7 +47,7 @@ namespace Shape_Interpreter.Classes
         /// </summary>
         /// <param name="line"></param>
         /// <returns></returns>
-        private Shape readShapeFromLine(string line)
+        private static Shape readShapeFromLine(string line)
         {
             string[] data = line.Split(',');
             
@@ -74,20 +74,16 @@ namespace Shape_Interpreter.Classes
         /// folder or a subfolder
         /// </summary>
         /// <returns></returns>
-        private string getResourcesFolder()
+        private static string getResourcesFolder()
         {
             string path = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
 
-            // The last "Shape_Interpreter" folder is the base project folder
-            int index = 0;
-            while (path.IndexOf("Shape_Interpreter", index + 1) != -1)
-            {
-                index = path.IndexOf("Shape_Interpreter", index + 1);
-            }
+            // The "Shape_Interpreter" folder is the base project folder
+            int index = path.IndexOf("Shape_Interpreter");
             index = path.IndexOf(@"\", index + 1);
             path = path.Substring(0, index + 1);
 
-            return Path.Combine(path, @"Resources\");
+            return Path.Combine(path, @"Shape_Interpreter\Resources\");
         }
     }
 }
