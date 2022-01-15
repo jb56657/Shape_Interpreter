@@ -43,9 +43,23 @@ namespace Shape_Interpreter.Classes
             }
             Polygon p = (Polygon)obj;
 
-            return
-                (this.id == p.id) &&
-                (this.vertices.Equals(p.vertices));
+            // if the polygons don't have the same number of points, then they are not equal
+            if (this.vertices.Length != p.vertices.Length)
+            {
+                return false;
+            }
+            
+            // Check that each vertex is equal
+            for (int i=0; i<vertices.Length; i++)
+            {
+                if (!this.vertices[i].Equals(p.vertices[i]))
+                {
+                    return false;
+                }
+            }
+
+            // if the id of both polygons don't match, then they are not equal. Otherwise they are equal.
+            return (this.id == p.id);
         }
 
         public override int GetHashCode()

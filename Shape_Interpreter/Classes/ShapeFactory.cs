@@ -18,12 +18,47 @@ namespace Shape_Interpreter.Classes
 
         public static Polygon assemblePolygon(string[] CSVdata)
         {
-            throw new NotImplementedException();
+            // A polygon will have an id, the "Polygon" label, and 4 strings for each data point (if formatted correctly)
+            if (((CSVdata.Length - 2) % 4) != 0)
+            {
+                return null;
+            }
+            // A polygon also needs at least 3 points to be valid.
+            else if (CSVdata.Length < 14)
+            {
+                return null;
+            }
+
+            // translate each vertex into a point
+            List<Point> points = new List<Point>();
+            for (int i = 2; i+3 < CSVdata.Length; i+=4)
+            {
+                double x = Convert.ToDouble(CSVdata[i + 1]);
+                double y = Convert.ToDouble(CSVdata[i + 3]);
+                points.Add(new Point(x, y));
+            }
+
+            int id = Convert.ToInt32(CSVdata[0]);
+
+            return new Polygon(id, points.ToArray());
         }
 
         public static Ellipses assembleEllipses(string[] CSVdata)
         {
-            throw new NotImplementedException();
+            // An ellipse will be split into 12 strings if formatted correctly.
+            if (CSVdata.Length != 12)
+            {
+                return null;
+            }
+
+            // Convert each piece of data to the appropriate data type
+            int id = Convert.ToInt32(CSVdata[0]);
+            Point center = new Point(Convert.ToDouble(CSVdata[3]), Convert.ToDouble(CSVdata[5]));
+            double orientation = Convert.ToDouble(CSVdata[11]);
+            double radius1 = Convert.ToDouble(CSVdata[7]);
+            double radius2 = Convert.ToDouble(CSVdata[9]);
+
+            return new Ellipses(id, center, orientation, radius1, radius2);
         }
 
         public static Circle assembleCircle(string[] CSVdata)
@@ -35,10 +70,9 @@ namespace Shape_Interpreter.Classes
             }
             
             // Convert each piece of data to the appropriate data type
-            int id; Point center; double radius;
-            id = Convert.ToInt32(CSVdata[0]);
-            center = new Point(Convert.ToDouble(CSVdata[3]), Convert.ToDouble(CSVdata[5]));
-            radius = Convert.ToDouble(CSVdata[7]);
+            int id = Convert.ToInt32(CSVdata[0]);
+            Point center = new Point(Convert.ToDouble(CSVdata[3]), Convert.ToDouble(CSVdata[5]));
+            double radius = Convert.ToDouble(CSVdata[7]);
 
             return new Circle(id, center, radius);
         }
