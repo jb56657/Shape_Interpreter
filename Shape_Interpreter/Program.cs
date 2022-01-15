@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Shape_Interpreter.Classes;
+using System;
 using System.IO;
 
 namespace Shape_Interpreter
@@ -8,28 +9,14 @@ namespace Shape_Interpreter
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            string path = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
 
-            Console.WriteLine(path);
-
-            // The last "Shape_Interpreter" folder is the base project folder
-            int index = 0;
-            while (path.IndexOf("Shape_Interpreter", index+1) != -1)
+            Shape[] shapes =
             {
-                index = path.IndexOf("Shape_Interpreter", index + 1);
-            }
-            index = path.IndexOf(@"\", index + 1);
-            path = path.Substring(0, index + 1);
+                new Square(6, new Point(1, 2), 3.14, 1),
+                new Square(1, new Point(0, 0), 0, 3)
+            };
 
-            path = Path.Combine(path, @"Resources\Machine Vision Development Engineer Coding Exercise _ ShapeList2.csv");
-
-            Console.WriteLine(path);
-
-            StreamReader reader = new StreamReader(path);
-
-            Console.WriteLine(reader.ReadLine());
-
-            reader.Close();
+            FileWriter.writeCalculationsToCSVFile(shapes, "squareTests.csv");
         }
     }
 }

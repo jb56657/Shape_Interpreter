@@ -51,6 +51,11 @@ namespace Shape_Interpreter.Classes
             return id;
         }
 
+        public string getTypeString()
+        {
+            return "Square";
+        }
+
         public override bool Equals(object obj)
         {
             if (!typeof(Square).Equals(obj.GetType()))

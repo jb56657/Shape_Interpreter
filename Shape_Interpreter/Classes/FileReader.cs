@@ -16,6 +16,12 @@ namespace Shape_Interpreter.Classes
         {
             string filePath = getResourcesFolder() + fileName;
             
+            // First check that the file exists
+            if (!File.Exists(filePath))
+            {
+                return null;
+            }
+
             StreamReader reader = new StreamReader(filePath);
 
             List<Shape> shapes = new List<Shape>();

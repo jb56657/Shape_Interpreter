@@ -35,6 +35,11 @@ namespace Shape_Interpreter.Classes
             return id;
         }
 
+        public string getTypeString()
+        {
+            return "Polygon";
+        }
+
         public override bool Equals(object obj)
         {
             if (!typeof(Polygon).Equals(obj.GetType()))

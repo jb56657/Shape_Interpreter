@@ -39,6 +39,11 @@ namespace Shape_Interpreter.Classes
             return id;
         }
 
+        public string getTypeString()
+        {
+            return "Equilateral Triangle";
+        }
+
         public override bool Equals(object obj)
         {
             if (!typeof(Triangle).Equals(obj.GetType()))

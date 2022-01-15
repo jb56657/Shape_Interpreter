@@ -49,6 +49,11 @@ namespace Shape_Interpreter.Classes
             return id;
         }
 
+        public string getTypeString()
+        {
+            return "Ellipse";
+        }
+
         public override bool Equals(object obj)
         {
             if (!typeof(Ellipses).Equals(obj.GetType()))

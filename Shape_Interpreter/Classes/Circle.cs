@@ -37,6 +37,11 @@ namespace Shape_Interpreter.Classes
             return id;
         }
 
+        public string getTypeString()
+        {
+            return "Circle";
+        }
+
         public override bool Equals(object obj)
         {
             if (!typeof(Circle).Equals(obj.GetType()))

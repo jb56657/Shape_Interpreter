@@ -12,6 +12,8 @@ namespace Shape_Interpreter.Classes
 
         public abstract Point calculateCentroid();
 
+        public abstract string getTypeString();
+
         public abstract int getID();
     }
 }
