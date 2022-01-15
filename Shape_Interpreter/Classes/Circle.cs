@@ -17,19 +17,31 @@ namespace Shape_Interpreter.Classes
             this.radius = radius;
         }
 
+        /// <summary>
+        /// Area of circle is pi*r^2
+        /// </summary>
+        /// <returns></returns>
         public double calculateArea()
         {
-            throw new NotImplementedException();
+            return Math.PI * radius * radius;
         }
 
+        /// <summary>
+        /// The center of the circle is one of the fields
+        /// </summary>
+        /// <returns></returns>
         public Point calculateCentroid()
         {
-            throw new NotImplementedException();
+            return center;
         }
 
+        /// <summary>
+        /// The circumference of a circle is 2*pi*r
+        /// </summary>
+        /// <returns></returns>
         public double calculatePerimeter()
         {
-            throw new NotImplementedException();
+            return 2 * Math.PI * radius;
         }
 
         public int getID()

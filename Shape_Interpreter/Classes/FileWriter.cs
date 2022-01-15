@@ -9,6 +9,12 @@ namespace Shape_Interpreter.Classes
     {
         public static void writeCalculationsToCSVFile(Shape[] shapes, string fileName)
         {
+            // If the file name does not have the .csv extention, add it.
+            if(!fileName.EndsWith(".csv"))
+            {
+                fileName += ".csv";
+            }
+            
             string path = getOutputFolder() + fileName;
             
             // If the file already exists, delete the old one.

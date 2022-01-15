@@ -14,6 +14,12 @@ namespace Shape_Interpreter.Classes
         /// <returns></returns>
         public static Shape[] readFromCSVFile(string fileName)
         {
+            // If the file name does not have the .csv extention, add it.
+            if (!fileName.EndsWith(".csv"))
+            {
+                fileName += ".csv";
+            }
+
             string filePath = getResourcesFolder() + fileName;
             
             // First check that the file exists

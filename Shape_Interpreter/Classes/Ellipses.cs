@@ -29,19 +29,36 @@ namespace Shape_Interpreter.Classes
             }
         }
 
+        /// <summary>
+        /// The Area of an ellipse is pi*r1*r2
+        /// </summary>
+        /// <returns>area of the ellipse</returns>
         public double calculateArea()
         {
-            throw new NotImplementedException();
+            return Math.PI * majorRadius * minorRadius;
         }
 
+        /// <summary>
+        /// The center of the ellipse is given
+        /// </summary>
+        /// <returns>central point of the shape</returns>
         public Point calculateCentroid()
         {
-            throw new NotImplementedException();
+            return center;
         }
 
+        /// <summary>
+        /// Approximate the perimeter using Ramanujan's approximation
+        /// Formula used is Approximation 3 from https://www.mathsisfun.com/geometry/ellipse-perimeter.html
+        /// </summary>
+        /// <returns>approximation of the perimeter of the ellipse</returns>
         public double calculatePerimeter()
         {
-            throw new NotImplementedException();
+            double h = Math.Pow(majorRadius - minorRadius, 2) / Math.Pow(majorRadius + minorRadius, 2);
+
+            double seriesApproximation = 1 + (3 * h) / (10 + Math.Sqrt(4 - (3 * h)));
+
+            return Math.PI * (majorRadius + minorRadius) * seriesApproximation;
         }
 
         public int getID()

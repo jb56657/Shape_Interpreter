@@ -10,6 +10,7 @@ namespace Shape_Interpreter_Test
     public class ShapeCalculationTests
     {
         private readonly double delta = 0.00001;
+        private readonly double approxDelta = 0.01; // More leaniency is given to approximations
 
         [TestMethod]
         public void SquareTest()
@@ -84,7 +85,7 @@ namespace Shape_Interpreter_Test
             Shape ellipses = new Ellipses(1, new Point(0.054, -1.006), -0.314, 9.3, 0.2);
 
             Assert.AreEqual(5.843362335677, ellipses.calculateArea(), delta);
-            Assert.AreEqual(41.328364812784, ellipses.calculatePerimeter(), delta); //Wolfram alpha said 37.2407, but two other sources said 41.3
+            Assert.AreEqual(37.2407, ellipses.calculatePerimeter(), approxDelta);
             Assert.IsTrue(ellipses.calculateCentroid().approximatelyEqualTo(new Point(0.054, -1.006), delta));
         }
 
@@ -95,7 +96,7 @@ namespace Shape_Interpreter_Test
             Shape ellipses2 = new Ellipses(3, new Point(0, 0), 0, 1, 1);
 
             Assert.AreEqual(Math.PI, ellipses2.calculateArea(), delta);
-            Assert.AreEqual(Math.PI * 2, ellipses2.calculatePerimeter(), delta);
+            Assert.AreEqual(Math.PI * 2, ellipses2.calculatePerimeter(), approxDelta);
             Assert.IsTrue(ellipses2.calculateCentroid().approximatelyEqualTo(new Point(0, 0), delta));
         }
     }

@@ -19,19 +19,33 @@ namespace Shape_Interpreter.Classes
             this.sideLength = sideLength;
         }
 
+        /// <summary>
+        /// The area of a triangle is height * baseLength / 2
+        /// </summary>
+        /// <returns></returns>
         public double calculateArea()
         {
-            throw new NotImplementedException();
+            double height = Math.Sqrt(Math.Pow(sideLength, 2) - Math.Pow(sideLength / 2, 2));
+
+            return height * sideLength / 2;
         }
 
+        /// <summary>
+        /// The center point is a provided parameter when constructing a triangle.
+        /// </summary>
+        /// <returns></returns>
         public Point calculateCentroid()
         {
-            throw new NotImplementedException();
+            return center;
         }
 
+        /// <summary>
+        /// The perimeter of a triangle is just 3 times the side length.
+        /// </summary>
+        /// <returns></returns>
         public double calculatePerimeter()
         {
-            throw new NotImplementedException();
+            return sideLength * 3;
         }
 
         public int getID()
