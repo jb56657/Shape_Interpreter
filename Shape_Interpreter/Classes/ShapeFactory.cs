@@ -8,12 +8,36 @@ namespace Shape_Interpreter.Classes
     {
         public static Square assembleSquare(string[] CSVdata)
         {
-            throw new NotImplementedException();
+            // A square will split into 10 segments if formatted correctly
+            if (CSVdata.Length != 10)
+            {
+                return null;
+            }
+
+            // Convert each piece of data to the appropriate data type
+            int id = Convert.ToInt32(CSVdata[0]);
+            Point center = new Point(Convert.ToDouble(CSVdata[3]), Convert.ToDouble(CSVdata[5]));
+            double sidelength = Convert.ToDouble(CSVdata[7]);
+            double orientation = Convert.ToDouble(CSVdata[9]);
+
+            return new Square(id, center, orientation, sidelength);
         }
 
         public static Triangle assembleTriangle(string[] CSVdata)
         {
-            throw new NotImplementedException();
+            // A triangle will split into 10 segments if formatted correctly
+            if (CSVdata.Length != 10)
+            {
+                return null;
+            }
+
+            // Convert each piece of data to the appropriate data type
+            int id = Convert.ToInt32(CSVdata[0]);
+            Point center = new Point(Convert.ToDouble(CSVdata[3]), Convert.ToDouble(CSVdata[5]));
+            double sideLength = Convert.ToDouble(CSVdata[7]);
+            double orientation = Convert.ToDouble(CSVdata[9]);
+
+            return new Triangle(id, center, orientation, sideLength);
         }
 
         public static Polygon assemblePolygon(string[] CSVdata)
